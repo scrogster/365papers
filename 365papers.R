@@ -28,6 +28,6 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   ylim(c(1, 366))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
-  title("365 papers")+
+  ggtitle("365 papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
   theme_bw()
