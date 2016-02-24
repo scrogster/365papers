@@ -24,8 +24,8 @@ ggplot(tidy_papers, aes(x=Hour))+
 #Plot cumulative sum vs yearday
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   geom_step(col="red")+
-  xlim(c(1, 366))+
-  ylim(c(1, 366))+
+  xlim(c(1, 365))+
+  ylim(c(1, 365))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   ggtitle("365 papers")+
