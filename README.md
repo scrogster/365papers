@@ -9,3 +9,9 @@ R code to log my progress on #365papers:
 2. Data tidied using *tidyr*
 
 3. Some basic graphs plotted to show progress towards target, and diurnal and weekly patterns to tweets.
+
+![Diurnal](diurnal-hist.png)
+
+![Diurnal](weekly-hist.png)
+
+![Diurnal](cumulative-hist.png)
