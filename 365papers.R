@@ -13,12 +13,19 @@ papers$DateTime<-mdy_hm(papers$DateTime)
 
 ##
 tidy_papers<-papers %>%
-              mutate(Hour=hour(DateTime), YearDay=yday(DateTime), PaperNum=order(DateTime))
+              mutate(Hour=hour(DateTime), YearDay=yday(DateTime), 
+                     DOW=wday(DateTime,label=TRUE, abbr=TRUE), PaperNum=order(DateTime))
 
 #Plot distribution of hours
 ggplot(tidy_papers, aes(x=Hour))+
-  geom_histogram(binwidth = 1, fill="red", col="red") +
-  xlim(c(0, 24))+
+  geom_histogram(binwidth = 1, fill="red", col="red", alpha=0.7) +
+#  xlim(0, 24.1)+
+  theme_bw()
+
+#Plot distribution of day of week
+ggplot(tidy_papers, aes(x=DOW))+
+  geom_bar( fill="red", col="red", alpha=0.7) +
+  xlab("")+
   theme_bw()
 
 #Plot cumulative sum vs yearday
