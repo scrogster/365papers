@@ -16,19 +16,20 @@ tidy_papers<-papers %>%
               mutate(Hour=hour(DateTime), YearDay=yday(DateTime), 
                      DOW=wday(DateTime,label=TRUE, abbr=TRUE), PaperNum=order(DateTime))
 
-#Plot distribution of hours
+#Plot diurnal distribution of tweets
 ggplot(tidy_papers, aes(x=Hour))+
   geom_histogram(binwidth = 1, fill="red", col="red", alpha=0.7) +
-#  xlim(0, 24.1)+
   theme_bw()
+ggsave(file="diurnal-hist.png")
 
-#Plot distribution of day of week
+#Plot distribution by day of week
 ggplot(tidy_papers, aes(x=DOW))+
   geom_bar( fill="red", col="red", alpha=0.7) +
   xlab("")+
   theme_bw()
+ggsave(file="weekly-hist.png")
 
-#Plot cumulative sum vs yearday
+#Plot cumulative sum vs time
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   geom_step(col="red")+
   xlim(c(1, 365))+
@@ -38,3 +39,4 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   ggtitle("365 papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
   theme_bw()
+ggsave(file="cumulative.png")
