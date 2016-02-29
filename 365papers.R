@@ -20,14 +20,14 @@ tidy_papers<-papers %>%
 ggplot(tidy_papers, aes(x=Hour))+
   geom_histogram(binwidth = 1, fill="red", col="red", alpha=0.7) +
   theme_bw()
-ggsave(file="diurnal-hist.png", width=2.5, height=2.5)
+ggsave(file="diurnal-hist.png", width=4, height=4)
 
 #Plot distribution by day of week
 ggplot(tidy_papers, aes(x=DOW))+
   geom_bar( fill="red", col="red", alpha=0.7) +
   xlab("")+
   theme_bw()
-ggsave(file="weekly-hist.png", width=2.5, height=2.5)
+ggsave(file="weekly-hist.png", width=4, height=4)
 
 #Plot cumulative sum vs time
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
@@ -39,4 +39,4 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   ggtitle("365 papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
   theme_bw()
-ggsave(file="cumulative.png", width=2.5, height=2.5)
+ggsave(file="cumulative.png", width=4, height=4)
