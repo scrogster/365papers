@@ -10,10 +10,5 @@ R code to log my progress on #365papers:
 
 3. Some basic graphs plotted to show progress towards target, and diurnal and weekly patterns to tweets.
 
-<img src="diurnal-hist.png" width="300">
-
-<img src="weekly-hist.png" width="300">
-
-<img src="yearpub-hist.png" width="300">
-
-<img src="cumulative.png" width="300">
+<img src="diurnal-hist.png" width="300"> | <img src="weekly-hist.png" width="300">
+<img src="yearpub-hist.png" width="300"> | <img src="cumulative.png" width="300">
