@@ -26,7 +26,8 @@ tidy_papers<-papers %>%
 #Plot diurnal distribution of tweets
 ggplot(tidy_papers, aes(x=Hour))+
   geom_histogram(binwidth = 1, fill="red", col="red", alpha=0.7) +
-  theme_bw()
+  theme_bw()+
+  ggtitle("Diurnal")
 ggsave(file="diurnal-hist.png", width=4, height=4)
 
 #Plot distribution by day of week
@@ -34,14 +35,16 @@ ggplot(tidy_papers, aes(x=DOW))+
   geom_bar( fill="blue", col="blue", alpha=0.7) +
   xlab("")+
   theme_bw()+
-  xlab("Day of week")
+  xlab("Day of week")+
+  ggtitle("Weekly")
 ggsave(file="weekly-hist.png", width=4, height=4)
 
 #Plot distribution of publication years
 ggplot(tidy_papers, aes(x=YearPub))+
   geom_histogram(binwidth = 1, fill="green", col="green", alpha=0.7) +
   theme_bw()+
-  xlab("Year published")
+  xlab("Year published")+
+  ggtitle("Year of publication")
 ggsave(file="yearpub-hist.png", width=4, height=4)
 
 #Plot cumulative sum vs time
@@ -52,5 +55,6 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
-  theme_bw()
+  theme_bw()+
+  ggtitle("Progress towards target")
 ggsave(file="cumulative.png", width=4, height=4)
