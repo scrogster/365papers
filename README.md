@@ -14,6 +14,6 @@ R code to log my progress on #365papers:
 
 <img src="weekly-hist.png" width="300">
 
-<img src="yearpub-hist.png width="300">
+<img src="yearpub-hist.png" width="300">
 
 <img src="cumulative.png" width="300">
