@@ -8,7 +8,7 @@ Some simple *R* code to log my progress on [#365papers](https://dynamicecology.w
 
 2. Data are tidied using *tidyr*, and publication dates extracted using *stringr*.
 
-3. Some basic graphs are plotted to show progress towards target; diurnal and weekly patterns; and years of publication of papers. Graphs are plotted using *ggplot*.
+3. Some basic graphs are plotted to show progress towards target; daily and weekly patterns; and years of publication of papers. Graphs are plotted using *ggplot*.
 
 <img src="cumulative.png" width="300"><img src="diurnal-hist.png" width="300">
 <img src="weekly-hist.png" width="300"><img src="yearpub-hist.png" width="300">
