@@ -1,6 +1,9 @@
-all: cumulative.png 
+all: *.png
 
-cumulative.png: 365papers.R
+*.png: 365papers.R
 	Rscript 365papers.R
 	rm Rplots.pdf
+
+clean:
+	rm *.png
 
