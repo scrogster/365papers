@@ -20,14 +20,11 @@ tidy_papers<-papers %>%
                      DOW=wday(DateTime,label=TRUE, abbr=TRUE), PaperNum=order(DateTime),
                      YearPub=as.numeric(str_extract(Content, "\\d{4}")))
 
-
-
-
 #Plot diurnal distribution of tweets
 ggplot(tidy_papers, aes(x=Hour))+
   geom_histogram(binwidth = 1, fill="red", col="red", alpha=0.7) +
   theme_bw()+
-  ggtitle("Diurnal")
+  ggtitle("Daily")
 ggsave(file="diurnal-hist.png", width=4, height=4)
 
 #Plot distribution by day of week
