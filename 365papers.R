@@ -5,16 +5,12 @@ library(tidyr)
 library(stringr)
 library(ggplot2)
 
-
 papers<-gsheet2tbl('https://docs.google.com/spreadsheets/d/1Z_4x3w2SgpOdHQ028IiPEgbB6CSFC0YT3oUymE5UoBE/edit?usp=sharing')
-
-
 
 #add some sensible variable names
 names(papers)<-c("DateTime", "Tweeter", "Content", "PaperURL", "TweetLink")
 papers$DateTime<-mdy_hm(papers$DateTime) 
 
-##
 tidy_papers<-papers %>%
               mutate(Hour=hour(DateTime), YearDay=yday(DateTime), 
                      DOW=wday(DateTime,label=TRUE, abbr=TRUE), PaperNum=order(DateTime),
