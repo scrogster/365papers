@@ -40,6 +40,11 @@ ggplot(tidy_papers, aes(x=YearPub))+
   ggtitle("Year of publication")
 ggsave(file="yearpub-hist.png", width=4, height=4)
 
+yday_now<-yday(today())
+total_papers<-max(tidy_papers$PaperNum)
+right_now<-data.frame("YearDay"=yday_now, "PaperNum"=total_papers)
+prog_lab<-paste0(yday_now, " days,\n", total_papers, " papers")
+
 #Plot cumulative sum vs time
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   geom_step(col="purple")+
@@ -48,6 +53,8 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
+	geom_point(data=right_now, aes(x=YearDay, y=PaperNum), colour="purple")+
+	geom_text(data=right_now, aes(x=YearDay+2, y=PaperNum),  label=prog_lab, hjust=0, lineheight=0.7)+
   theme_bw()+
   ggtitle("Progress towards target")
 ggsave(file="cumulative.png", width=4, height=4)
