@@ -1,5 +1,4 @@
 
-
 ## Tracking my progress on #365papers
 
 Some simple *R* code to log my progress on [#365papers](https://dynamicecology.wordpress.com/2016/01/04/a-recap-of-my-year-in-365papers/):
