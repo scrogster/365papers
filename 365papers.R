@@ -49,8 +49,8 @@ prog_lab<-paste0(yday_now, " days,\n", total_papers, " papers")
 #Plot cumulative sum vs time
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   geom_step(col="purple")+
-  xlim(c(1, 150))+
-  ylim(c(1, 150))+
+  xlim(c(1, 200))+
+  ylim(c(1, 200))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
