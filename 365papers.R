@@ -54,8 +54,8 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
-	geom_point(data=right_now, aes(x=YearDay, y=PaperNum), colour="purple")+
-	geom_text(data=right_now, aes(x=YearDay+2, y=PaperNum),  label=prog_lab, hjust=0, lineheight=0.7)+
+#	geom_point(data=right_now, aes(x=YearDay, y=PaperNum), colour="purple")+
+#	geom_text(data=right_now, aes(x=YearDay-20, y=PaperNum-20),  label=prog_lab, hjust=0, lineheight=0.7)+
   theme_bw()+
   ggtitle("Progress towards target")
 ggsave(file="cumulative.png", width=4, height=4)
