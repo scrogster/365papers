@@ -11,3 +11,4 @@ Some simple *R* code to log my progress on [#365papers](https://dynamicecology.w
 
 <img src="cumulative.png" width="300"><img src="diurnal-hist.png" width="300">
 <img src="weekly-hist.png" width="300"><img src="yearpub-hist.png" width="300">
+<img src="heatmap.png" width="600">

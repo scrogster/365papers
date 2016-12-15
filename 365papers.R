@@ -59,3 +59,15 @@ ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   theme_bw()+
   ggtitle("Progress towards target")
 ggsave(file="cumulative.png", width=4, height=4)
+
+ggplot(tidy_papers, aes(y=DOW, x=Hour))+ 
+	geom_bin2d(binwidth=c(1, 1)) +
+	scale_fill_gradient(low = "grey",high = "tomato3")+
+	scale_x_continuous(minor_breaks = seq(0, 24, 3), breaks=seq(0, 24, 3)) +
+	ylab("Day of week")+
+	geom_rect(xmin=9, xmax=18, ymin=1.5, ymax=6.5, fill=NA, colour="steelblue")+
+	theme_bw()+
+	ggtitle("Hour vs day heatmap")
+ggsave(file="heatmap.png", width=8, height=4)
+	
+	
