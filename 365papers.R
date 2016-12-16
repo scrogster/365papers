@@ -13,8 +13,11 @@ names(papers)<-c("DateTime", "Tweeter", "Content", "PaperURL", "TweetLink")
 papers$DateTime<-mdy_hm(papers$DateTime) 
 
 tidy_papers<-papers %>%
-              mutate(Hour=hour(DateTime), YearDay=yday(DateTime), 
-                     DOW=wday(DateTime,label=TRUE, abbr=TRUE), PaperNum=order(DateTime),
+              mutate(Hour=hour(DateTime), 
+              			 YearDay=yday(DateTime), 
+                     DOW=wday(DateTime,label=TRUE, abbr=TRUE), 
+              			 WorkingHours=ifelse(DOW!="Sat" & DOW!="Sun"& Hour>8 & Hour<18, TRUE, FALSE),
+              			 PaperNum=order(DateTime),
                      YearPub=as.numeric(str_extract(Content, "\\d{4}")))
 
 #Plot diurnal distribution of tweets
@@ -62,12 +65,11 @@ ggsave(file="cumulative.png", width=4, height=4)
 
 ggplot(tidy_papers, aes(y=DOW, x=Hour))+ 
 	geom_bin2d(binwidth=c(1, 1)) +
-	scale_fill_gradient(low = "grey",high = "tomato3")+
-	scale_x_continuous(minor_breaks = seq(0, 24, 3), breaks=seq(0, 24, 3)) +
+	scale_fill_gradient(low = "lightgrey",high = "darkgreen")+
+	scale_x_continuous(minor_breaks = seq(0, 23, 1), breaks=seq(0, 23, 3)) +
 	ylab("Day of week")+
-	geom_rect(xmin=9, xmax=18, ymin=1.5, ymax=6.5, fill=NA, colour="steelblue")+
-	theme_bw()+
-	ggtitle("Hour vs day heatmap")
-ggsave(file="heatmap.png", width=8, height=4)
+	geom_rect(xmin=9, xmax=18, ymin=1.5, ymax=6.5, fill=NA, colour="blue")+
+	theme_bw()
+ggsave(file="heatmap.png", width=8, height=2.4)
 	
 	
