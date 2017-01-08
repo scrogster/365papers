@@ -14,11 +14,13 @@ papers$DateTime<-mdy_hm(papers$DateTime)
 
 tidy_papers<-papers %>%
               mutate(Hour=hour(DateTime), 
+              			 Year=year(DateTime),
               			 YearDay=yday(DateTime), 
                      DOW=wday(DateTime,label=TRUE, abbr=TRUE), 
               			 WorkingHours=ifelse(DOW!="Sat" & DOW!="Sun"& Hour>8 & Hour<18, TRUE, FALSE),
               			 PaperNum=order(DateTime),
-                     YearPub=as.numeric(str_extract(Content, "\\d{4}")))
+                     YearPub=as.numeric(str_extract(Content, "\\d{4}"))) %>%
+	           filter(Year==2016)
 
 #Plot diurnal distribution of tweets
 ggplot(tidy_papers, aes(x=Hour))+
@@ -52,8 +54,8 @@ prog_lab<-paste0(yday_now, " days,\n", total_papers, " papers")
 #Plot cumulative sum vs time
 ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
   geom_step(col="purple")+
-  xlim(c(1, 365))+
-  ylim(c(1, 365))+
+  xlim(c(1, 366))+
+  ylim(c(1, 366))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
