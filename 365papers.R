@@ -14,13 +14,15 @@ papers$DateTime<-mdy_hm(papers$DateTime)
 
 tidy_papers<-papers %>%
               mutate(Hour=hour(DateTime), 
-              			 Year=year(DateTime),
+              			 Year=factor(year(DateTime)),
               			 YearDay=yday(DateTime), 
                      DOW=wday(DateTime,label=TRUE, abbr=TRUE), 
               			 WorkingHours=ifelse(DOW!="Sat" & DOW!="Sun"& Hour>8 & Hour<18, TRUE, FALSE),
-              			 PaperNum=order(DateTime),
                      YearPub=as.numeric(str_extract(Content, "\\d{4}"))) %>%
-	           filter(Year==2016)
+	                   group_by(Year) %>%
+	                   mutate(PaperNum=order(DateTime)) %>%
+	                   ungroup()
+	           #filter(Year==2016)
 
 #Plot diurnal distribution of tweets
 ggplot(tidy_papers, aes(x=Hour))+
@@ -52,22 +54,21 @@ right_now<-data.frame("YearDay"=yday_now, "PaperNum"=total_papers)
 prog_lab<-paste0(yday_now, " days,\n", total_papers, " papers")
 
 #Plot cumulative sum vs time
-ggplot(tidy_papers, aes(x=YearDay, y=PaperNum))+
-  geom_step(col="purple")+
+ggplot(tidy_papers, aes(x=YearDay, y=PaperNum, col=Year))+
+  geom_step()+
   xlim(c(1, 366))+
   ylim(c(1, 366))+
   xlab("Day of Year")+
   ylab("Cumulative papers")+
   geom_abline(slope=1, intercept=0, col="gray", lty=2)+
-#	geom_point(data=right_now, aes(x=YearDay, y=PaperNum), colour="purple")+
-#	geom_text(data=right_now, aes(x=YearDay-20, y=PaperNum-20),  label=prog_lab, hjust=0, lineheight=0.7)+
   theme_bw()+
   ggtitle("Progress towards target")
 ggsave(file="cumulative.png", width=4, height=4)
 
 ggplot(tidy_papers, aes(y=DOW, x=Hour))+ 
 	geom_bin2d(binwidth=c(1, 1)) +
-	scale_fill_gradient(low = "lightgrey",high = "darkgreen")+
+	#scale_fill_gradient(low = "lightgrey",high = "darkgreen")+
+	scale_fill_distiller(type="seq", palette="Greens", direction=1)+
 	scale_x_continuous(minor_breaks = seq(0, 23, 1), breaks=seq(0, 23, 3)) +
 	ylab("Day of week")+
 	geom_rect(xmin=9, xmax=18, ymin=1.5, ymax=6.5, fill=NA, colour="blue")+
